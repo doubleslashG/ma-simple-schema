@@ -1,6 +1,6 @@
 Package.describe({
   summary: "aldeed:simple-schema extended",
-  version: "0.0.0",
+  version: "1.0.0",
   git: "https://github.com/doubleslashG/ma-simple-schema.git"
 });
 

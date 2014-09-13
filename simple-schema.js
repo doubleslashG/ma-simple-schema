@@ -9,11 +9,11 @@ maSimpleSchema = function(schemaObj) {
 
 	var customValidationFunction = function() {
 		var self = this;
-		var getFieldValue = function(field) {
+		var getKeyValue = function(field) {
 			return self.field(field).value;
 		};
 
-		var allowedValues = this.definition.maAllowedValues(getFieldValue);
+		var allowedValues = this.definition.maAllowedValues(getKeyValue);
 
 		var contained = _.every(this.value, function(elem) {
 			var values = _.map(allowedValues, function(elem) {
