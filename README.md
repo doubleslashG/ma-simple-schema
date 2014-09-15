@@ -3,7 +3,7 @@ ma:simple-schema
 
 aldeed:simple-schema extended
 
-# Installation
+## Installation
 Clone the repository in a local directory
 ````
 cd ~/my_repos/
@@ -22,8 +22,8 @@ meteor add ma:simple-schema
 
 Enjoy! :)
 
-# Overview
-This package extends SimpleSchema functionalities by making available additional rules in the schema definition. You can use it exactly as you would use SimpleSchema, just substituting `SimpleSchema` with `maSimpleSchema`.
+## Overview
+This package extends SimpleSchema functionalities by making additional rules available in the schema definition. You can use it exactly as you would use SimpleSchema, just substituting `SimpleSchema` with `maSimpleSchema`.
 For example, to instantiate a schema:
 ````javascript
 BookSchema = new maSimpleSchema({
@@ -38,12 +38,12 @@ BookSchema = new maSimpleSchema({
 	}
 });
 ````
-Refer to SimpleSchema documentation for an in-depth overview of the various functionalities.
+Refer to [simple-schema](https://github.com/aldeed/meteor-simple-schema) documentation for an in-depth overview of the various functionalities.
 
-# Additional rules
+## Additional rules
 Here are the additional rules you can specify when using `maSimpleSchema`. Such rules are ignored by standard SimpleSchema objects (as long as this package is installed, otherwise an error is thrown).
 
-## maDependencies
+### maDependencies
 With this rule you can specify an array of keys whose value depends on the value of the current key. For example, given a 'country' schema:
 ````javascript
 CountrySchema = new maSimpleSchema({
@@ -58,7 +58,7 @@ CountrySchema = new maSimpleSchema({
 	}
 });
 ````
-It is clear that if the country name is 'Italy' then in the major airports array we will find Turin(TRN), Rome(), Milan, Florence, Venice etc. while for 'Germany' we would find Berlin, Munich, Frankfurt etc.
+It is clear that if the country name is 'Italy' then in the major airports array we will find Turin (TRN), Rome (FCO), Milan, Florence, Venice etc. while for 'Germany' we would find Berlin (SXF), Frankfurt (FRA), Munich etc.
 In this sense, the `majorAirports` key is a dependency of `name`, so we can correct the schema definition:
 ````javascript
 CountrySchema = new maSimpleSchema({
@@ -79,7 +79,7 @@ When working with the schema key, you can then get its dependencies easily:
 mySchemaInstance.schema(keyName).maDependencies
 ````
 
-## maAllowedValues
+### maAllowedValues
 This rule lets you specify a function which should return an array of objects defined as follows:
 ````javascript
 {
@@ -107,13 +107,13 @@ CountrySchema = new maSimpleSchema({
 			if(name === "Italy")
 				return [
 					{ label: "Turin", value: "TRN"},
-					{ label: "Rome", value: ""},
+					{ label: "Rome Fiumicino", value: "FCO"},
 					...
 				];
 			else if(name === "Germany")
 				return [
-					{ label: "Berlin", value: ""},
-					{ label: "Frankfurt", value: ""},
+					{ label: "Berlin Schoenfeld", value: "SXF"},
+					{ label: "Frankfurt", value: "FRA"},
 					...
 				];
 		}
@@ -130,8 +130,8 @@ var myGetKeyValue = function(keyName) {
 mySchemaInstance.schema(keyName).maAllowedValues(myGetKeyValue);
 ````
 
-# Package update
+## Package update
 When a new version is released, just pull the changes to the local repository. If you symlinked the repository to the packages directory of your project, this is enough. Otherwise, you have to manually copy the updated files in the `packages/ma:simple-schema` directory of your project.
 
-# Compatibility with SimpleSchema
+## Compatibility with SimpleSchema
 `ma:simple-schema` is 100% compatible with `aldeed:simple-schema` and extends it. This means you can use both packages together or you can just use `maSimpleSchema` for all your schemas (even if you are not using the extended functionalities in all the schemas definitions).
