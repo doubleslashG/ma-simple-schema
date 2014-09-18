@@ -15,6 +15,9 @@ maSimpleSchema = function(schemaObj) {
 
 		var allowedValues = this.definition.maAllowedValues(getKeyValue);
 
+		// specifing an empty array, every value should be considered acceptable
+		if(allowedValues.length === 0) return true;
+
 		var contained = _.every(this.value, function(elem) {
 			var values = _.map(allowedValues, function(elem) {
 				return elem.value.toString();
