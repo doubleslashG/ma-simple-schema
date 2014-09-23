@@ -14,18 +14,24 @@ maSimpleSchema = function(schemaObj) {
 		};
 
 		var allowedValues = this.definition.maAllowedValues(getKeyValue);
+		var currentValues;
+
+		if(Array.isArray(this.value))
+			currentValues = this.value;
+		else
+			currentValues = [this.value];
 
 		// specifing an empty array, every value should be considered acceptable
 		if(allowedValues.length === 0) return true;
 
-		var contained = _.every(this.value, function(elem) {
+		var contained = _.every(currentValues, function(elem) {
 			var values = _.map(allowedValues, function(elem) {
 				return elem.value.toString();
 			});
 
 			return values.indexOf(elem) > -1;
 		});
-
+		
 		if(contained) return true;
 		else return "notAllowed";
 	};
