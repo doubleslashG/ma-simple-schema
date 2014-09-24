@@ -16,6 +16,11 @@ maSimpleSchema = function(schemaObj) {
 		var allowedValues = this.definition.maAllowedValues(getKeyValue);
 		var currentValues;
 
+		// if the value is not set we assume it is valid;
+		// in case it's required, it will be invalidated already
+		// (because of the `optional` field missing or set to false)
+		if(!this.value) return true;
+
 		if(Array.isArray(this.value))
 			currentValues = this.value;
 		else

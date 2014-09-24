@@ -1,5 +1,8 @@
 # Change log
 
+## 1.1.2
+Bugfix - [#9 of ma:wizard](https://github.com/doubleslashG/ma-wizard/issues/9)
+
 ## 1.1.1
 Fixed validation of alphanumeric Strings - [issue #7 in ma:wizard](https://github.com/doubleslashG/ma-wizard/issues/7)
 
